@@ -1,0 +1,25 @@
+
+ 
+    
+    <div id="sredinaonama">
+        
+            <carousel3d
+            ng-model="slides"
+            options="options"
+            on-selected-click="selectedClick(index)"
+            >
+
+        <carousel3d-slide ng-repeat="slide in slides">
+            <figure>
+                <img ng-src="{{slide.src}}" alt=""/>
+                <figcaption ng-bind="slide.caption"></figcaption>
+            </figure>
+        </carousel3d-slide>
+
+    </carousel3d>
+        
+        
+        
+    </div>
+
+    

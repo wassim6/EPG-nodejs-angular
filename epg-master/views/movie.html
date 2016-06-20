@@ -1,0 +1,101 @@
+<header>
+  <h1>IMDb</h1>
+</header>
+<div class="wrapper">
+        <!-- Search bar -->
+        <div class="search-wrapper">
+            <div class="container container--add" style="padding-top: 20px;" >
+                <form id='search-form' method='get' class="search">
+                    <input type="text" class="search__field" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 800 }" onclick="select()" autofocus >
+                    <button type='submit' class="btn btn-md btn--danger search__button">search a movie</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <section class="container">
+          <div ng-if="details.Response==='False'">
+            No results found.
+          </div>
+          <div ng-if="!details">
+            Loading results...
+          </div>
+            <div class="col-sm-8 col-md-9">
+                <div class="movie">
+                    <h2 class="page-heading">{{details.title}}</h2>
+
+                    <div class="movie__info">
+                        <div class="col-sm-6 col-md-4 movie-mobile">
+                            <div class="movie__images" style="width:300px;" >
+                                <span class="movie__rating">{{details.imdbRating}}</span>
+                                <img alt='' ng-src="{{ details.Poster=='N/A' ? 'http://placehold.it/150x220&text=N/A' : details.Poster }}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-8">
+                            <p class="">Runtime: {{details.Runtime}}</p>
+
+                            <p class="movie__option" style="font-size:16px;" ><strong>Country: </strong>{{details.Country}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Year: </strong>{{ details.Year }}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Category: </strong>{{details.Genre}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Release date: </strong>{{details.Released}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Director: </strong>{{details.Director}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Actors: </strong>{{details.Actors}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Age restriction: </strong>{{details.Rated}}</p>
+                            <p class="movie__option" style="font-size:16px;"  ><strong>Box office: </strong>{{details.BoxOffice}}</p>
+
+                            <br/>
+                            <p class="movie__option" style="font-size:18px; font-weight: bold; "  >The plot:</p>
+
+                            <p class="movie__describe" style="font-size: 14px;" >{{details.Plot}}</p>
+
+                            <br/><br/>
+                            <!--
+                            <a href="#" class="btn btn-md btn--warning">book a ticket for this movie</a>
+                            <a href="#" class="btn btn-md">Add to watchlist</a>-->
+
+                            <p class="outer-p-3">
+                              <a ng-href="https://www.youtube.com/results?search_query={{ details.Title }}"  class="btn ">regarder la bande d'annoce</a>
+                              <span class="divider"></span>
+                              <a ng-href="http://subscene.com/subtitles/title?q={{ details.Title }}"  class="btn btn-default">traduction</a>
+                              <span class="divider"></span>
+                              <a ng-href="http://www.theost.com/search/custom/?key={{ details.Title }}"  class="btn btn-default btn-info">Hear Soundtracks!</a>
+                              <span class="divider"></span>
+                              <a ng-href="http://www.amazon.in/s/ref=nb_sb_noss_1?url=search-alias%3Ddvd&field-keywords={{ details.Title }}"  class="btn btn-md btn--warning">acheter ce film</a>
+                            </p>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <br/><br/><br/><br/><br/><br/>
+
+
+
+                </div>
+
+
+            </div>
+
+            <aside class="col-sm-4 col-md-3">
+                <div class="sitebar" style="    margin-top: 45px;">
+
+                    <div class="category category--discuss category--count marginb-sm mobile-category ls-cat">
+                        <h3 class="category__title">Related  Results<br><span class="title-edition"></span></h3>
+                        <ol>
+                          <li ng-repeat="movie in related.Search">
+                            <a href="#/movie" id="{{ $index + 1 }}" class="category__item" ng-click="update(movie)">
+                              {{ movie.Year }} - {{ movie.Title }}
+                          </li>
+                        </ol>
+                    </div>
+
+                </div>
+            </aside>
+        </section>
+
+
+
+    </div>

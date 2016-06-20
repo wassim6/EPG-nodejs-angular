@@ -1,0 +1,115 @@
+
+<style>
+    .hg{background-color:red;}
+</style>
+<style>
+    .smt{font-size: 9px;}
+</style>
+
+
+
+<script type="text/ng-template" id="firstDialogId">
+        <div class="ngdialog-message">
+            <h3>{{detail.t}}</h3>
+            <p>{{detail.s*1000 | date:'HH:mm'}} - {{((detail.m[1]+detail.s)*1000) | date:'HH:mm'}}</p>
+
+            <p>Description:{{detail.d}}</p>
+
+        </div>
+</script>
+<header>
+  <h1>EPG</h1>
+</header>
+<div role="main">
+<main   >
+        <div class="epg" data-component="epg" data-start="428">
+
+            <div class="epg-nav">
+                <div class="wrapper">
+                    <form class="form form-horizontal">
+                        <label for="search" class="label">
+                            <input id="search" name="search" class="input" placeholder="{{'RechercheC' | translate}}" ng-model="searchC" style="color:black" />
+                        </label>
+                        <label for="search" class="label">
+                            <input id="search" name="search" class="input" placeholder="{{'RechercheP' | translate}}" ng-model="searchP" style="color:black" />
+                        </label>
+
+                    </form>
+
+                    <div class="epg-nav-dates">
+                        <ol class="list list-dates" data-component="dates">
+                            <li class="today"><a href="index.html">{{'Aujourd' | translate }}</a><a href="index.html" class="toggle" data-action="toggle"><span class="icon fa fa-angle-down" aria-hidden="true"></span></a></li>
+                            <li ><a href="index.html"  ><br/>{{'Demain' | translate }}</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- // Nav -->
+
+            <div class="epg-contents" style="overflow-x: hidden; overflow-y: visible; max-height:400px;">
+                <a href class="control control-prev" style="" data-action="prev"><span class="icon fa fa-chevron-left" aria-hidden="true"></span></a>
+                <a href class="control control-next" style="" data-action="next"><span class="icon fa fa-chevron-right" aria-hidden="true"></span></a>
+
+                <div class="epg-grid">
+                    <div class="epg-timeline">
+                        <ol class="list list-timeline">
+                            <li>01:00</li>
+                            <li>02:00</li>
+                            <li>03:00</li>
+                            <li>04:00</li>
+                            <li>05:00</li>
+                            <li>06:00</li>
+                            <li>07:00</li>
+                            <li>08:00</li>
+                            <li>09:00</li>
+                            <li>10:00</li>
+                            <li>11:00</li>
+                            <li>12:00</li>
+                            <li>13:00</li>
+                            <li>14:00</li>
+                            <li>15:00</li>
+                            <li>16:00</li>
+                            <li>17:00</li>
+                            <li>18:00</li>
+                            <li>19:00</li>
+                            <li>20:00</li>
+                            <li>21:00</li>
+                            <li>22:00</li>
+                            <li>23:00</li>
+                            <li>00:00</li>
+                        </ol>
+                    </div><!-- // Timeline -->
+
+                    <div class="epg-channels"   >
+                        <ol class="list list-channels">
+                            <li ng-repeat="c in channels | limitTo:taille-1 | filter:searchC " >
+                                <a href="index.html" title="{{c.t}}"><img ng-src="http://tv.sky.com/logo/80/35/skychb{{c.c[0]}}.png" alt="Channel Logo" /></a>
+                                <span class="title" style="font-size:.6em" >{{c.t}}</span>
+                                <span class="title">{{c.c[1]}}</span>
+
+                            </li>
+                        </ol>
+                    </div><!-- // Channels -->
+
+                    <div class="epg-programmes">
+                        <!-- <span class="epg-marker" title="01:47" style="left: 1428px"></span> -->
+                        <!-- // Marker -->
+
+                        <ol class="list list-programmes">
+                            <li ng-repeat="programme in scheduled | filter:searchP | filter:searchC  "
+                                 >
+                                <div class="programme" ng-repeat="p in programme" style="width:{{p.l}}px" >
+                                    <a href ng-click="open(p)" ng-class="{hg:p.y==y && p.x==x}" >
+                                        <h6 class="title" style="text-align: center; font-size:{{p.size}}px"   >{{p.t}}</h6>
+                                        <h6 class="title" style="text-align: center;font-size:{{p.size}}px" >{{p.s*1000 | date:'HH:mm'}} - {{((p.m[1]+p.s)*1000) | date:'HH:mm'}}</h6>
+                                    </a>
+                                </div>
+                            </li><!-- // Channel -->
+
+                        </ol>
+                    </div><!-- // Programmes -->
+                </div><!-- // Grid -->
+            </div><!-- // Contents -->
+        </div><!-- // EPG -->
+
+    </main>
+</div>

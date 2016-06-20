@@ -1,0 +1,35 @@
+<style>
+    .ngdialog-content{
+        width:800px;
+    }
+
+</style>
+<script type="text/ng-template" id="firstDialogId2">
+    <div class="ngdialog-message" style="width:800px;" >
+        <!--<video class="video-js vjs-default-skin" controls preload="auto"
+               width="640" height="264" poster="" vjs-video>
+            <source src="rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_ara_high" type='rtmp/mp4'>
+        </video>-->
+        <video class="video-js vjs-default-skin" controls preload="auto"
+       width="592" height="252" vjs-video vjs-media="mediaToggle">
+</video>
+
+    </div>
+</script>
+<header>
+  <h1>Live</h1>
+</header>
+<div id="sredina" style="margin-top:-50px;" >
+    <div id="programi">
+        <div >
+        <section ng-repeat="c in channels" style="width:128px; margin-left:30px;" >
+            <a href ng-click="openV(c)" >
+                <figure style="padding:2px;"  >
+                    <img ng-src="http://tv.sky.com/logo/80/35/skychb{{c.c[0]}}.png" alt="RTS" style="height:46px; width:35px;" />
+                    <figcaption>{{c.t}}</figcaption>
+                </figure>
+            </a>
+        </section>
+        </div>
+    </div>
+</div>
